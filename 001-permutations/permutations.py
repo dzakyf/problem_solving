@@ -1,5 +1,4 @@
 # Counting permutations 
-# n = 5, r = 3
 
 def permutation_w_recursive(items, r):
     for _ in permute(items, 0, r):
