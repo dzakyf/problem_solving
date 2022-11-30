@@ -1,5 +1,29 @@
 #Kadane Algorithm's is basically look for all positive contiguous segments of the array.
 
+def solveWithBruteForce(arr):
+    best = 0 
+    for a in range(0, len(arr)):
+        for b in range(a, len(arr)):
+            sum = 0 
+            for k in range(a, b):
+                sum += arr[k]
+            best = max(sum, best)
+
+    return best 
+
+
+def solveWithOptimizedBruteForce(arr):
+    best = 0 
+    for a in range(0, len(arr)):
+        sum = 0
+        for b in range(a, len(arr)):
+            sum += arr[b]
+            best = max(sum, best)
+
+    return best 
+
+
+
 def max_subarray_w_kadane(arr):
     #1 we decide that the value of first index is the largest
     maxSum = current = arr[0]
@@ -35,9 +59,11 @@ def max_subarray_w_inbuilt_max_func(arr):
 def main():
     nums = [-2,1,-3,4,-1,2,1,-5,4]    
 
-    max_subarray = max_subarray_w_kadane(nums)
+    kadane= max_subarray_w_kadane(nums)
     w_inbuilt = max_subarray_w_inbuilt_max_func(nums)
-    print(max_subarray, w_inbuilt)
+    bruteForce = solveWithBruteForce(nums)
+    optimizedBruteForce = solveWithOptimizedBruteForce(nums)
+    print(optimizedBruteForce)
 
 if __name__ == '__main__':
     main()
