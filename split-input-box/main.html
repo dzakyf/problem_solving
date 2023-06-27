@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./styles.css" type="text/css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="split-box">
+           <input type="text" maxlength="1" name="digits1"></input>
+           <input type="text" maxlength="1" name="digits2"></input>
+           <input type="text" maxlength="1" name="digits3"></input>
+           <input type="text" maxlength="1" name="digits4"></input>
+           <input type="text" maxlength="1" name="digits5"></input>
+           <input type="text" maxlength="1" name="digits6"></input>
+        </div>
+        <div id="split_box_text" class="split_box_text"></div>
+        <div class="success_text"></div>
+        <script src="" async defer></script>
+        <script type="text/javascript">
+            res = ""
+            split_box_text = document.getElementsByClassName("split_box_text")
+            success_text = document.getElementsByClassName("success_text")
+
+
+            document.querySelector(".split-box").addEventListener("input", function(e){
+                value = e.target.value 
+                res += value
+
+                if(value === "" && !e.target.previousElementSibling){
+                    res = ""
+                }
+
+                if(value === "" && e.target.previousElementSibling){
+                    res = res.slice(0,-1)
+                    e.target.previousElementSibling.focus()
+                }
+
+                if(value !== "" && e.target.nextElementSibling && e.target.nextElementSibling.nodeName === "INPUT"){
+                    e.target.nextElementSibling.focus()
+                }
+                
+                split_box_text[0].innerHTML = res
+            })
+            
+        </script>
+    </body>
+</html>

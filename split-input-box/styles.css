@@ -1,0 +1,25 @@
+:root {
+    --main-width-split-box : 200px;
+    --main-height-split-box : 200px;
+    --main-font-size: 54pt;
+    --main-font-color: rgb(119, 25, 119);
+    --main-input-shade: rgb(209, 128, 209);
+
+    font-size: var(--main-font-size);
+}
+
+html{
+}
+
+div.split-box > input {
+    width: var(--main-width-split-box);
+    height: var(--main-height-split-box);
+    font-size: 2em;
+    text-align: center;
+    color: var(--main-font-color);
+}
+
+div.split-box > input:focus {
+    outline-color: var(--main-font-color);
+    background-color: var(--main-input-shade);
+}
