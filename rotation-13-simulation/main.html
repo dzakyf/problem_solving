@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./styles.css" type="text/css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="split-box">
+           <input type="text" maxlength="1" name="digits1"></input>
+           <input type="text" maxlength="1" name="digits2"></input>
+           <input type="text" maxlength="1" name="digits3"></input>
+           <input type="text" maxlength="1" name="digits4"></input>
+           <input type="text" maxlength="1" name="digits5"></input>
+           <input type="text" maxlength="1" name="digits6"></input>
+        </div>
+        <div class="result-section">
+            <p>Result:</p>
+           <div id="split_box_text" class="split-box-text"></div>
+        </div>
+       <script src="" async defer></script>
+        <script type="text/javascript">
+            let res = ""
+            let split_box_text = document.getElementsByClassName("split-box-text")
+            let success_text = document.getElementsByClassName("success_text")
+
+            function toAscii(letter){
+                return letter.charCodeAt(0)
+            }
+
+            function swap(ascii){
+                let converted 
+                if(ascii >= 65 && ascii <= 90){ converted = ((ascii - 65 + 13) % 26) + 65 }
+                else if(ascii >= 97 && ascii <= 122){ converted = ((ascii - 97 + 13) % 26) + 97 }
+                else{ converted = ascii }
+                return converted
+            }
+
+            function rotateThirteen(letter){
+                ascii = toAscii(letter) //decimal
+                swapped = swap(ascii)
+                reassigned = String.fromCharCode(swapped)
+                return reassigned
+            }
+
+
+            document.querySelector(".split-box").addEventListener("input", function(e){
+                value = e.target.value 
+                converted = rotateThirteen(value)
+                console.log(e)
+                if(e.inputType === "insertText"){
+                    res += converted
+                }
+
+                if(e.inputType === "deleteContentBackward"){
+                    res = res.slice(0,-1)
+                }
+
+                if(value === "" && !e.target.previousElementSibling){
+                    res = ""
+                }
+
+                if(value === "" && e.target.previousElementSibling){
+                    e.target.previousElementSibling.focus()
+                }
+
+                if(value !== "" && e.target.nextElementSibling && e.target.nextElementSibling.nodeName === "INPUT"){
+                    e.target.nextElementSibling.focus()
+                }
+
+                split_box_text[0].innerHTML = res
+            })
+        </script>
+    </body>
+</html>
